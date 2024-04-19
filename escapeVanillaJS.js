@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
               const response = await fetch("directions.json");
               const directions = await response.json();
               const message = await navigateLabyrinth(directions);
-              document.getElementById("room3Result").innerHTML = message;
+              document.getElementById("room3Result").textContent = message;
             } catch (error) {
               // Handling any potential errors
               console.error(error);
@@ -80,24 +80,24 @@ document.addEventListener("DOMContentLoaded", () => {
         It uses the reduce method to iterate through the array and compare the publication dates of the books to find the most recent one. 
         */
         function findMostRecentBook(books) {
-          // 🪲 Bug: Logic error
-          return books.reduce((mostRecent, book) =>
-            new Date(book.published) > new Date(mostRecent.published)
-              ? book
-              : mostRecent
-          );
-        }
+            // Compare the dates and return the most recently published book
+            return books.reduce((mostRecent, book) => {
+                const mostRecentDate = new Date(mostRecent.published);
+                const bookDate = new Date(book.published);
+                return mostRecentDate < bookDate ? book : mostRecent;
+            });
+        };
+        
         
         /*
          The code below takes two sets, setA and setB, and returns a new Set containing the intersection of the two input sets. 
          It uses the filter method to iterate through setA, checking if each element is present in setB using the has method. 
          */
         function findIntersection(setA, setB) {
-          // 🪲 Bug: Incorrect logic
-          const intersection = new Set([...setA].filter((elem) => setB.has(elem)));
-          return intersection;
-        }
-        
+      // 🪲 Bug: Incorrect logic
+      const intersection = new Set([...setA].filter((elem) => setB.has(elem)));
+      return intersection;
+    }
         /*
         The code below uses an async function, navigateLabyrinth, to iterates through a set of directions, pausing for 1 second between each step.
         It logs the current navigating direction and finally returns a congratulatory message 
