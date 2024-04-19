@@ -95,9 +95,10 @@ document.addEventListener("DOMContentLoaded", () => {
          */
         function findIntersection(setA, setB) {
       // 🪲 Bug: Incorrect logic
-      const intersection = new Set([...setA].filter((elem) => setB.has(elem)));
-      return intersection;
+      const intersection = new Set([...setA].filter(item => setB.has(item)));
+        return intersection;
     }
+    
         /*
         The code below uses an async function, navigateLabyrinth, to iterates through a set of directions, pausing for 1 second between each step.
         It logs the current navigating direction and finally returns a congratulatory message 
